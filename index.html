@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caño Cristales 1px — un río entero en un pixel</title>
+<meta name="description" content="El pixel (295, 487) de frontpage.sh/million es Caño Cristales, el río de los 5 colores de Colombia. Un río entero en un pixel.">
+<style>
+  :root{
+    --rojo:#C1121F; --amarillo:#E9C46A; --verde:#2A9D8F; --azul:#219EBC; --negro:#22223B;
+    --bg:#0b0d10; --panel:#14171c; --text:#e8e6e1; --muted:#9a968e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;overflow-x:hidden}
+  a{color:var(--azul)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+
+  /* ── Lang toggle ── */
+  .lang-btn{position:fixed;top:14px;right:14px;z-index:50;background:var(--panel);color:var(--text);border:1px solid #333;border-radius:20px;padding:6px 14px;cursor:pointer;font-size:14px}
+  [data-lang="es"] .en{display:none}
+  [data-lang="en"] .es{display:none}
+
+  /* ── Hero ── */
+  header{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    background:linear-gradient(rgba(11,13,16,.45),rgba(11,13,16,.85)),url('img/rio-rojo.jpg') center/cover}
+  .hero-inner{padding:60px 20px}
+  .pixel-dot{width:14px;height:14px;display:inline-block;border-radius:2px;background:var(--rojo);
+    animation:cycle 10s infinite;box-shadow:0 0 18px 4px currentColor;vertical-align:middle}
+  @keyframes cycle{
+    0%,18%{background:var(--rojo);color:var(--rojo)}
+    20%,38%{background:var(--amarillo);color:var(--amarillo)}
+    40%,58%{background:var(--verde);color:var(--verde)}
+    60%,78%{background:var(--azul);color:var(--azul)}
+    80%,98%{background:var(--negro);color:#555}
+    100%{background:var(--rojo);color:var(--rojo)}
+  }
+  h1{font-size:clamp(2rem,6vw,4rem);font-weight:800;letter-spacing:-.02em;text-shadow:0 2px 20px rgba(0,0,0,.7)}
+  .sub{font-size:clamp(1rem,2.5vw,1.4rem);color:#d8d4cc;margin-top:14px;text-shadow:0 1px 10px rgba(0,0,0,.8)}
+  .coords{margin-top:26px;font-family:ui-monospace,Menlo,monospace;font-size:1.05rem;background:rgba(0,0,0,.5);display:inline-block;padding:8px 18px;border-radius:8px;border:1px solid rgba(255,255,255,.15)}
+
+  /* ── Río animado (ondas con los 5 colores) ── */
+  .rio{height:56px;width:100%;position:relative;overflow:hidden}
+  .rio .flow{position:absolute;inset:0;background:linear-gradient(90deg,var(--rojo),var(--amarillo),var(--verde),var(--azul),var(--negro),var(--rojo));background-size:300% 100%;animation:flow 12s linear infinite}
+  @keyframes flow{from{background-position:0% 0}to{background-position:300% 0}}
+  .rio svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+  section{padding:70px 0}
+  h2{font-size:clamp(1.5rem,4vw,2.2rem);margin-bottom:18px;letter-spacing:-.01em}
+  p.lead{color:var(--muted);max-width:640px}
+
+  /* ── Live pixel card ── */
+  .live-card{background:var(--panel);border:1px solid #262b33;border-radius:16px;padding:28px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:26px}
+  .swatch{width:84px;height:84px;border-radius:12px;background:var(--rojo);border:2px solid #333;flex:none;transition:background .8s}
+  .live-meta{font-family:ui-monospace,Menlo,monospace;font-size:.95rem;min-width:220px}
+  .live-meta div{margin:3px 0}
+  .live-meta .k{color:var(--muted)}
+  .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ddc84;margin-right:6px;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .btn{display:inline-block;margin-top:16px;background:var(--azul);color:#fff;text-decoration:none;padding:10px 20px;border-radius:10px;font-weight:600}
+
+  /* ── 5 colores ── */
+  .stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:30px}
+  .stage{background:var(--panel);border-radius:14px;overflow:hidden;border:1px solid #262b33}
+  .stage .chip{height:10px}
+  .stage .body{padding:16px}
+  .stage h3{font-size:1rem;margin-bottom:6px}
+  .stage p{font-size:.85rem;color:var(--muted)}
+
+  /* ── Mapa / posición ── */
+  .map-box{background:var(--panel);border:1px solid #262b33;border-radius:16px;padding:28px;margin-top:26px;font-family:ui-monospace,Menlo,monospace;font-size:.92rem;overflow-x:auto}
+  .map-box b{color:var(--amarillo)}
+
+  /* ── Galería ── */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:30px}
+  .gallery img{width:100%;height:230px;object-fit:cover;border-radius:14px;display:block}
+
+  footer{padding:50px 0 70px;border-top:1px solid #1d2127;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--muted)}
+</style>
+</head>
+<body data-lang="es">
+<button class="lang-btn" onclick="toggleLang()"><span class="es">🇬🇧 English</span><span class="en">🇨🇴 Español</span></button>
+
+<header>
+  <div class="hero-inner">
+    <h1><span class="pixel-dot"></span>
+      <span class="es">Un río entero en un pixel</span>
+      <span class="en">A whole river in one pixel</span>
+    </h1>
+    <p class="sub es">Este pixel es <strong>Caño Cristales</strong>, el río de los 5 colores — La Macarena, Colombia 🇨🇴</p>
+    <p class="sub en">This pixel is <strong>Caño Cristales</strong>, Colombia's river of five colors 🇨🇴</p>
+    <div class="coords">frontpage.sh/million → (295, 487)</div>
+  </div>
+</header>
+
+<div class="rio" aria-hidden="true">
+  <div class="flow"></div>
+  <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
+    <path d="M0,30 C150,55 300,5 450,30 C600,55 750,5 900,30 C1050,55 1150,15 1200,30 L1200,0 L0,0 Z" fill="#0b0d10"></path>
+    <path d="M0,34 C150,59 300,9 450,34 C600,59 750,9 900,34 C1050,59 1150,19 1200,34 L1200,56 L0,56 Z" fill="#0b0d10" opacity=".55"></path>
+  </svg>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 class="es">🔴🟡🟢🔵⚫ El pixel, en vivo</h2>
+    <h2 class="en">🔴🟡🟢🔵⚫ The pixel, live</h2>
+    <p class="lead es">Un bot recompra este pixel y lo hace fluir por los 5 colores reales del río. Cada recompra duplica su precio — igual que un río, nunca pasa dos veces por el mismo lugar al mismo costo.</p>
+    <p class="lead en">A bot re-buys this pixel, cycling it through the river's five real colors. Each re-buy doubles its price — like a river, it never flows past the same point at the same cost.</p>
+    <div class="live-card">
+      <div class="swatch" id="swatch"></div>
+      <div class="live-meta" id="liveMeta">
+        <div><span class="pulse"></span><span class="k">status:</span> <span id="mStatus">…</span></div>
+        <div><span class="k">rgb:</span> <span id="mRgb">—</span></div>
+        <div><span class="k">label:</span> <span id="mLabel">—</span></div>
+        <div><span class="k">veces comprado:</span> <span id="mTimes">—</span></div>
+        <div><span class="k">próximo precio:</span> <span id="mPrice">—</span></div>
+      </div>
+      <div>
+        <a class="btn" href="https://www.frontpage.sh/million" target="_blank" rel="noopener">
+          <span class="es">Verlo en el canvas ↗</span><span class="en">See it on the canvas ↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="es">Los 5 colores</h2>
+    <h2 class="en">The 5 colors</h2>
+    <p class="lead es">Entre junio y noviembre, la planta acuática <em>Macarenia clavigera</em> enciende el lecho del río. Hoy el río está en temporada.</p>
+    <p class="lead en">From June to November, the aquatic plant <em>Macarenia clavigera</em> sets the riverbed ablaze. The river is in season right now.</p>
+    <div class="stages">
+      <div class="stage"><div class="chip" style="background:var(--rojo)"></div><div class="body">
+        <h3>🔴 <span class="es">Rojo</span><span class="en">Red</span></h3>
+        <p class="es"><em>Macarenia clavigera</em>, la planta endémica que solo vive aquí.</p>
+        <p class="en"><em>Macarenia clavigera</em>, an endemic plant that lives nowhere else on Earth.</p>
+      </div></div>
+      <div class="stage"><div class="chip" style="background:var(--amarillo)"></div><div class="body">
+        <h3>🟡 <span class="es">Amarillo</span><span class="en">Yellow</span></h3>
+        <p class="es">Arenas doradas que brillan bajo el agua cristalina.</p>
+        <p class="en">Golden sands glowing under crystal-clear water.</p>
+      </div></div>
+      <div class="stage"><div class="chip" style="background:var(--verde)"></div><div class="body">
+        <h3>🟢 <span class="es">Verde</span><span class="en">Green</span></h3>
+        <p class="es">Musgos y algas sobre las rocas de la sierra.</p>
+        <p class="en">Mosses and algae draped over the mountain rock.</p>
+      </div></div>
+      <div class="stage"><div class="chip" style="background:var(--azul)"></div><div class="body">
+        <h3>🔵 <span class="es">Azul</span><span class="en">Blue</span></h3>
+        <p class="es">Agua tan pura que casi no lleva sedimentos ni nutrientes.</p>
+        <p class="en">Water so pure it carries almost no sediment or nutrients.</p>
+      </div></div>
+      <div class="stage"><div class="chip" style="background:var(--negro)"></div><div class="body">
+        <h3>⚫ <span class="es">Negro</span><span class="en">Black</span></h3>
+        <p class="es">Rocas del Escudo Guayanés: ~1.200 millones de años.</p>
+        <p class="en">Guiana Shield rock, ~1.2 billion years old.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="es">¿Por qué (295, 487)?</h2>
+    <h2 class="en">Why (295, 487)?</h2>
+    <p class="lead es">Si el canvas de 1000×1000 fuera un mapamundi, este pixel cae exactamente donde está La Macarena, Meta.</p>
+    <p class="lead en">If the 1000×1000 canvas were a world map, this pixel lands exactly on La Macarena, Meta, Colombia.</p>
+    <div class="map-box">
+      lat  =  2.2547° N&nbsp;&nbsp;→&nbsp;&nbsp;y = (90 − lat) / 180 × 1000 = <b>487</b><br>
+      lon  = 73.7871° W&nbsp;&nbsp;→&nbsp;&nbsp;x = (180 − lon) / 360 × 1000 = <b>295</b><br><br>
+      <span class="es">El único pixel del board que es, literalmente, un lugar en la Tierra.</span>
+      <span class="en">The one pixel on the board that is, literally, a place on Earth.</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="es">El río real</h2>
+    <h2 class="en">The real river</h2>
+    <div class="gallery">
+      <img src="img/macarenia.jpg" alt="Macarenia clavigera tiñendo de rojo Caño Cristales">
+      <img src="img/manto-virgen.jpg" alt="Cascadas Manto de la Virgen, Caño Cristales">
+      <img src="img/los-ocho.jpg" alt="Los Ocho, pozos naturales de Caño Cristales">
+    </div>
+  </div>
+</section>
+
+<div class="rio" aria-hidden="true" style="transform:scaleY(-1)">
+  <div class="flow"></div>
+  <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
+    <path d="M0,30 C150,55 300,5 450,30 C600,55 750,5 900,30 C1050,55 1150,15 1200,30 L1200,0 L0,0 Z" fill="#0b0d10"></path>
+  </svg>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p class="es">🏁 Hecho para Dev Racing × frontpage.sh/million — Reto 2: One Pixel Challenge. Pagado con USDC en la red <a href="https://tempo.xyz" target="_blank" rel="noopener">Tempo</a> vía MPP.</p>
+    <p class="en">🏁 Built for Dev Racing × frontpage.sh/million — Challenge 2: One Pixel Challenge. Paid with USDC on <a href="https://tempo.xyz" target="_blank" rel="noopener">Tempo</a> via MPP.</p>
+    <p style="margin-top:12px">
+      Fotos / Photos: CC BY-SA vía Wikimedia Commons —
+      <a href="https://commons.wikimedia.org/wiki/File:Ca%C3%B1o_Cristales_01.jpg" target="_blank" rel="noopener">Astromario</a> ·
+      <a href="https://commons.wikimedia.org/wiki/File:Ca%C3%B1o_cristales_la_macarena_Ariari_Meta_Colombia.jpg" target="_blank" rel="noopener">Sierraluisfer</a> ·
+      <a href="https://commons.wikimedia.org/wiki/File:Cascadas_Manto_de_La_Virgen_-_Ca%C3%B1o_Cristales_-_La_Macarena_-_Meta_-_Colombia.jpg" target="_blank" rel="noopener">Manto de la Virgen</a> ·
+      <a href="https://commons.wikimedia.org/wiki/File:Los_Ocho_en_Ca%C3%B1o_Cristales.jpg" target="_blank" rel="noopener">Los Ocho</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+function toggleLang(){
+  const b=document.body;
+  b.dataset.lang = b.dataset.lang==='es' ? 'en' : 'es';
+}
+const PIXEL_API='https://www.frontpage.sh/api/million/pixel?x=295&y=487';
+async function refresh(){
+  try{
+    const r=await fetch(PIXEL_API);
+    const p=await r.json();
+    document.getElementById('mStatus').textContent=p.owned?'en el canvas ✓':'aún virgen';
+    document.getElementById('mRgb').textContent=p.rgb||'—';
+    document.getElementById('mLabel').textContent=p.label||'—';
+    document.getElementById('mTimes').textContent=p.timesBought;
+    document.getElementById('mPrice').textContent='$'+p.nextPriceUsd+' USD';
+    if(p.rgb){document.getElementById('swatch').style.background=p.rgb;}
+  }catch(e){
+    document.getElementById('mStatus').textContent='ver en frontpage.sh/million';
+  }
+}
+refresh();
+setInterval(refresh,15000);
+</script>
+</body>
+</html>
