@@ -12,12 +12,13 @@ START="${1:-0}"
 INTERVAL="${2:-90}"
 
 COLORS=("#C1121F" "#E9C46A" "#2A9D8F" "#219EBC" "#22223B")
+# máx 80 caracteres por label (regla del API)
 LABELS=(
-  "🔴 1/5 Caño Cristales, Colombia 🇨🇴 — Macarenia clavigera enciende el río. Click para verlo."
-  "🟡 2/5 Caño Cristales, Colombia 🇨🇴 — arenas doradas bajo agua cristalina. Click para verlo."
-  "🟢 3/5 Caño Cristales, Colombia 🇨🇴 — musgos y algas de la sierra. Click para verlo."
-  "🔵 4/5 Caño Cristales, Colombia 🇨🇴 — agua tan pura que no lleva sedimentos. Click para verlo."
-  "⚫ 5/5 Caño Cristales, Colombia 🇨🇴 — rocas de 1.200 millones de años. El río de los 5 colores 🌈"
+  "🔴 1/5 Caño Cristales 🇨🇴 la planta que enciende el río"
+  "🟡 2/5 Caño Cristales 🇨🇴 arenas doradas bajo el agua"
+  "🟢 3/5 Caño Cristales 🇨🇴 musgos y algas de la sierra"
+  "🔵 4/5 Caño Cristales 🇨🇴 agua tan pura que no lleva sedimentos"
+  "🌈 5/5 Caño Cristales 🇨🇴 el río de los 5 colores fluye en este pixel"
 )
 
 for i in $(seq "$START" 4); do

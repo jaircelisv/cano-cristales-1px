@@ -14,6 +14,12 @@ Tres capas de significado en un solo pixel:
 2. **Tiempo** — un bot recompra el pixel y lo hace fluir por los 5 colores reales del río (rojo → amarillo → verde → azul → negro). Es el único pixel del board que *fluye*. Cada recompra duplica el precio: el ciclo de 5 colores cuesta $0.155 en total — economía consciente, como manda el brief.
 3. **Click** — el label cuenta la etapa del río en hover, y el link abre un sitio bilingüe (ES/EN) con fotos reales, el estado del pixel en vivo vía la API del canvas, y la historia del río.
 
+## Entrega oficial
+
+- **Pixel:** (295, 487) — canvas de frontpage.sh/million
+- **buyId (primera compra de la entrega):** `01KWQHF55HARC9XB6Q4T80KCC5`
+- **Owner:** `0xaf4d…b343` (Tempo mainnet)
+
 ## Demo
 
 - 🌐 Sitio: https://jaircelisv.github.io/cano-cristales-1px/
