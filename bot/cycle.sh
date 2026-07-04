@@ -33,7 +33,7 @@ for i in $(seq "$START" 4); do
     --json "{\"quoteId\":\"$QUOTE_ID\",\"email\":\"$EMAIL\"}" \
     https://www.frontpage.sh/api/million/buy
   echo "   ✓ comprado. Verificando:"
-  curl -s "https://www.frontpage.sh/api/million/pixel?x=$X&y=$Y" | python3 -c 'import json,sys;p=json.load(sys.stdin);print(f"   rgb={p[\"rgb\"]} timesBought={p[\"timesBought\"]} next=${p[\"nextPriceUsd\"]}")'
+  curl -s "https://www.frontpage.sh/api/million/pixel?x=$X&y=$Y" | python3 -c 'import json,sys;p=json.load(sys.stdin);print("   rgb=%s timesBought=%s next=$%s" % (p["rgb"],p["timesBought"],p["nextPriceUsd"]))'
   [ "$i" -lt 4 ] && sleep "$INTERVAL"
 done
 echo "🌈 El río completó su ciclo."
