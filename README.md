@@ -20,6 +20,16 @@ Tres capas de significado en un solo pixel:
 - **buyId (primera compra de la entrega):** `01KWQHF55HARC9XB6Q4T80KCC5`
 - **Owner:** `0xaf4d…b343` (Tempo mainnet)
 
+## Bonus: Reto 1 — el río visible 🏞️
+
+Con el margen del presupuesto, una **sola compra ≤ $1.00** dibujó el propio Caño
+Cristales serpenteando por el canvas: 158 pixeles vírgenes ($0.79) en 5 bandas de
+color que fluyen en diagonal desde (272, 462) hasta (322, 512), pasando junto al
+pixel del Reto 2. Generador: [`bot/river.py`](bot/river.py) — excluye pixeles ya
+comprados y respeta el tope.
+
+- **buyId (entrega Reto 1, compra única):** `01KWQJAVCC7BZYY4ZJF5CTA47K` — 158 px, $0.79, lostCount 0
+
 ## Demo
 
 - 🌐 Sitio: https://jaircelisv.github.io/cano-cristales-1px/
